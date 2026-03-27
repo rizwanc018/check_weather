@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} Weather</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Open+Sans:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link href="{{ url_for('static', filename='styles/style.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='styles/weather.css') }}" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="page">
+
+        <div class="hero">
+            <div class="hero-topbar">
+                <div>
+                    <div class="city-name">{{ title }}</div>
+                    <div class="status-text">{{ status }}</div>
+                </div>
+                <img class="weather-icon" src="https://openweathermap.org/img/wn/{{ icon }}@2x.png"
+                    alt="{{ status }}" />
+            </div>
+
+            <div class="temp-section">
+                <div class="temp-main-block">
+                    <div class="temp-display">{{ temp }}<sup>°F</sup></div>
+                    <div class="feels-like">Feels like <strong>{{ feels_like }}°F</strong></div>
+                </div>
+                <div class="realfeel-row">
+                    <div class="realfeel-label">High / Low</div>
+                    <div class="minmax">{{ temp_max }}°<span>/</span>{{ temp_min }}°</div>
+                </div>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-cell">
+                    <div class="stat-icon-wrap">💧</div>
+                    <div class="stat-info">
+                        <div class="stat-label">Humidity</div>
+                        <div class="stat-value">{{ humidity }}%</div>
+                    </div>
+                </div>
+                <div class="stat-cell">
+                    <div class="stat-icon-wrap">💨</div>
+                    <div class="stat-info">
+                        <div class="stat-label">Wind Speed</div>
+                        <div class="stat-value">{{ wind_speed }} mph</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="search-bar">
+            <form action="/weather">
+                <div class="search-wrap">
+                    <input type="text" name="city" id="city" placeholder="Search another city…" autocomplete="off" />
+                </div>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+    </div>
+</body>
+
+</html>
